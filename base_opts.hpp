@@ -71,6 +71,7 @@ protected:
   template <typename T>
   void add_to_base_app(T &app)
   {
+    // clang-format off
     app.add_option("-i,--input_prefix", input_prefix, "Input prefix")->capture_default_str();
     app.add_option("-o,--output_filename", output_filename, "Output filename")->capture_default_str();
 
@@ -82,9 +83,10 @@ protected:
     app.add_option("--mrange", mrange, "minimum halo mass (log10)")->expected(2)->capture_default_str();
 
     app.add_option("-n,--nmesh", nmesh, "number of FFT mesh size")->capture_default_str();
-    app.add_option("--p_assign", p_assign, "particle assign type")->capture_default_str();
+    app.add_option("--p_assign", p_assign, "particle assign type")->check(CLI::IsMember({1, 2, 3}))->capture_default_str();
 
     app.add_flag("-v,--verbose", verbose, "verbose output");
+    // clang-format on
   }
 
 
